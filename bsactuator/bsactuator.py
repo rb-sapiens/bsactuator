@@ -17,6 +17,11 @@ class BsActuator:
       print("hello")
 
   def set_length(self, length, speed):
+    if length < 0 or length > 150 or (not isinstance(length, int)):
+      return False
+    if speed < 1 or speed > 10 or (not isinstance(speed, int)):
+      return False
+
     if self.talking == False:
       self.talking = True
       req_message = "set:"+str(length)+","+str(speed)+";"
@@ -30,6 +35,7 @@ class BsActuator:
             if length == int(length_str):
               self.talking = False
               return True
+    return False
 
   def get_length(self):
     self.ser.write(b"get;")
