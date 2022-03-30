@@ -55,3 +55,11 @@ example
 ```
 ba.reset()
 ```
+
+## close()
+Disconnect serial communication.
+
+example
+```
+ba.close()
+```
