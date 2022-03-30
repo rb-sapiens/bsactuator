@@ -17,7 +17,7 @@ class BsActuator:
       print("hello")
 
   def set_length(self, length, speed):
-    if length < 0 or length > 150 or (not isinstance(length, int)):
+    if length < 0 or length > 1500 or (not isinstance(length, int)):
       return False
     if speed < 1 or speed > 10 or (not isinstance(speed, int)):
       return False
