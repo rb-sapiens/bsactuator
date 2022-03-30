@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: bsactuator
+Version: 0.0.1
+Summary: A serial operator for BambooShoot Actuator
+Home-page: https://github.com/rb-sapiens/bsactuator
+Author: Shun Nagao
+Author-email: nagao@rb-sapiens.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+UNKNOWN
+
