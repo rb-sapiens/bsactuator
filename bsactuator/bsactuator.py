@@ -13,11 +13,9 @@ class BsActuator:
   def signal_handler(self, signal, frame):
     self.ser.close()
     sys.exit(0)
-    def hello(self):
-      print("hello")
 
   def set_length(self, length, speed):
-    if length < 0 or length > 1500 or (not isinstance(length, int)):
+    if length < 0 or length > 2000 or (not isinstance(length, int)):
       return False
     if speed < 1 or speed > 10 or (not isinstance(speed, int)):
       return False
@@ -25,7 +23,7 @@ class BsActuator:
     if self.talking == False:
       self.talking = True
       req_message = "set:"+str(length)+","+str(speed)+";"
-      self.ser.write(bytes(req_message, 'utf-8'))
+      self.ser.write(bytes(req_message).encode("utf-8"))
       while True:
         if self.ser.in_waiting > 0:
           recv_data = self.ser.readline()
