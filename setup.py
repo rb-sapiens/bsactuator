@@ -13,9 +13,9 @@ setuptools.setup(
     url="https://github.com/rb-sapiens/bsactuator",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 2",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.7',
+    python_requires='>=2.7',
 )
