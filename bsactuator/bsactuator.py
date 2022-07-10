@@ -2,11 +2,14 @@
 import serial
 import signal
 import sys
+import time
 
 class BsActuator:
   def __init__(self, port, baud):
     self.ser = serial.Serial(port, baud, timeout = 0.1)
     self.talking = False
+    self.timeout = 20
+    self.timeout_get = 1
     signal.signal(signal.SIGINT, self.signal_handler)
 
 
@@ -24,7 +27,10 @@ class BsActuator:
       self.talking = True
       req_message = "set:"+str(length)+","+str(speed)+";"
       self.ser.write(bytes(req_message).encode("utf-8"))
+      timeout = time.time() + self.timeout
       while True:
+        if time.time() > timeout:
+          break
         if self.ser.in_waiting > 0:
           recv_data = self.ser.readline()
           message = recv_data.strip().decode('utf-8')
@@ -37,7 +43,10 @@ class BsActuator:
 
   def get_length(self):
     self.ser.write(b"get;")
+    timeout = time.time() + self.timeout_get
     while True:
+      if time.time() > timeout:
+        break
       if self.ser.in_waiting > 0:
         recv_data = self.ser.readline()
         message = recv_data.strip().decode('utf-8')
@@ -51,9 +60,23 @@ class BsActuator:
   def release(self):
     self.ser.write(b"release;")
 
+  def healthcheck(self):
+    self.ser.write(b"healthcheck;")
+    timeout = time.time() + self.timeout_get
+    while True:
+      if time.time() > timeout:
+        break
+      if self.ser.in_waiting > 0:
+        recv_data = self.ser.readline()
+        message = recv_data.strip().decode('utf-8')
+        return message
+
   def reset(self):
     self.ser.write(b"reset;")
+    timeout = time.time() + self.timeout
     while True:
+      if time.time() > timeout:
+        break
       if self.ser.in_waiting > 0:
         recv_data = self.ser.readline()
         message = recv_data.strip().decode('utf-8')
