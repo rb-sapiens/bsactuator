@@ -23,23 +23,13 @@ class BsActuator:
     if speed < 1 or speed > 10 or (not isinstance(speed, int)):
       return False
 
-    if self.talking == False:
-      self.talking = True
-      req_message = "set:"+str(length)+","+str(speed)+";"
+    req_message = "set:"+str(length)+","+str(speed)+";"
+    version = sys.version_info[0]
+    if version == 2:
       self.ser.write(bytes(req_message).encode("utf-8"))
-      timeout = time.time() + self.timeout
-      while True:
-        if time.time() > timeout:
-          break
-        if self.ser.in_waiting > 0:
-          recv_data = self.ser.readline()
-          message = recv_data.strip().decode('utf-8')
-          if "complete:" in message:
-            length_str = message.replace("complete:", "")
-            if length == int(length_str):
-              self.talking = False
-              return True
-    return False
+    if version == 3:
+      self.ser.write(bytes(req_message, "utf-8"))
+    return True
 
   def get_length(self):
     self.ser.write(b"get;")
@@ -53,6 +43,7 @@ class BsActuator:
         if "length:" in message:
           length_str = message.replace("length:", "")
           return int(length_str)
+    return -1
 
   def hold(self):
     self.ser.write(b"hold;")
