@@ -2,6 +2,7 @@ README.md
 setup.py
 bsactuator/__init__.py
 bsactuator/bsactuator.py
+bsactuator/switchpusher.py
 bsactuator.egg-info/PKG-INFO
 bsactuator.egg-info/SOURCES.txt
 bsactuator.egg-info/dependency_links.txt
