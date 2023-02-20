@@ -5,6 +5,9 @@ Summary: A serial operator for BambooShoot Actuator
 Home-page: https://github.com/rb-sapiens/bsactuator
 Author: Shun Nagao
 Author-email: nagao@rb-sapiens.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 2
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
