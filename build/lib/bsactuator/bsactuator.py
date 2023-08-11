@@ -37,6 +37,8 @@ class BsActuator:
             if length == int(length_str):
               self.talking = False
               return True
+            if length == 0 and int(length_str) <= 0:
+              return True
 
   def get_length(self):
     self.ser.write(b"get;")
