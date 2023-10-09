@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="bsactuator", # Replace with your own username
-    version="0.0.5",
+    version="0.1.0",
     install_requires=[
         "pyserial",
     ],
