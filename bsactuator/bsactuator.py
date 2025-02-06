@@ -65,19 +65,6 @@ class BsActuator:
 
   def reset(self):
     self.ser.write(b"reset;")
-    timeout = time.time() + self.timeout
-    if self.model == "25mm01":
-      while True:
-        if time.time() > timeout:
-          break
-        if self.ser.in_waiting > 0:
-          recv_data = self.ser.readline()
-          message = recv_data.strip().decode('utf-8')
-          if "complete:" in message:
-            length_str = message.replace("complete:", "")
-            if int(length_str) == -1000:
-              self.talking = False
-              return True
 
   def close(self):
     self.ser.close()
