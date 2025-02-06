@@ -40,8 +40,8 @@ class BsActuator:
             return int(length_str)
     except Exception as e:
       print(e)
-      return None
-    return None
+      return -1
+    return -1
 
   def stop(self):
     self.ser.write(b"stop;")
